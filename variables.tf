@@ -4,11 +4,21 @@ Map of group_members, attributes below
 Required:
     - group_object_id
     - member_object_id
+Optional:
+    - timeouts (block):
+        - create (optional)
+        - delete (optional)
+        - read (optional)
 EOT
 
   type = map(object({
     group_object_id  = string
     member_object_id = string
+    timeouts = optional(object({
+      create = optional(string)
+      delete = optional(string)
+      read   = optional(string)
+    }))
   }))
   validation {
     condition = alltrue([
